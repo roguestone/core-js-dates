@@ -148,8 +148,30 @@ function getCountDaysOnPeriod(dateStart, dateEnd) {
  * '2024-02-02', { start: '2024-02-02', end: '2024-03-02' } => true
  * '2024-02-10', { start: '2024-02-02', end: '2024-03-02' } => true
  */
-function isDateInPeriod(/* date, period */) {
-  throw new Error('Not implemented');
+function isDateInPeriod(date, period) {
+  const checkDate = new Date(date);
+  const startDate = new Date(period.start);
+  const endDate = new Date(period.end);
+
+  const checkDateTime = Date.UTC(
+    checkDate.getUTCFullYear(),
+    checkDate.getUTCMonth(),
+    checkDate.getUTCDate()
+  );
+
+  const startDateTime = Date.UTC(
+    startDate.getUTCFullYear(),
+    startDate.getUTCMonth(),
+    startDate.getUTCDate()
+  );
+
+  const endDateTime = Date.UTC(
+    endDate.getUTCFullYear(),
+    endDate.getUTCMonth(),
+    endDate.getUTCDate()
+  );
+
+  return checkDateTime >= startDateTime && checkDateTime <= endDateTime;
 }
 
 /**
